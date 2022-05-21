@@ -3,6 +3,7 @@ import Sidebar from './../../../components/Sidebar/Sidebar';
 import { useSelector,useDispatch } from 'react-redux';
 import { useNavigate ,NavLink } from 'react-router-dom';
 import { getOrders } from '../../../store/orders/ordersSlice';
+import './confirm.css'
 function ConfirmedOrders() {
     const { orders,confirmedOrders, isLoading } = useSelector(state => state.order)
     const dispatch = useDispatch()
@@ -28,16 +29,19 @@ function ConfirmedOrders() {
               <span className='fa-solid fa-circle-xmark text-danger ms-1 fa-lg' role="button" onClick={() => {handleEdit(order,false)}}></span>
               </span>}
         </td> */}
-        <td><span className='fa-solid fa-pen-to-square'  onClick={() => { navigate(`/orders/${order._id}`, { state: { orderData: order } }) }} ></span></td>
+        {/* <td><span className='fa-solid fa-pen-to-square'  onClick={() => { navigate(`/orders/${order._id}`, { state: { orderData: order } }) }} ></span></td> */}
       </tr>))
     
   return (
       <>
-      <Sidebar/>
+      <Sidebar />
+      .
       <div >
-    { confirmedOrders && confirmedOrders.length>0 ?<div className='container'><NavLink to="/discounts/add" className="btn btn-primary my-2">Add Order</NavLink>
+        {confirmedOrders && confirmedOrders.length > 0 ?
+          <div className=' mx-auto-con '>
+            <NavLink to="/discounts/add" className="btn btn-primary my-2">Add Order</NavLink>
     <h2 className='text-center text-dark'>Confirmed Orders</h2>
-    <table className="table table-hover table-bordered table-striped">
+    <table className="table table-hover table-bordered table-striped mx-auto my-1">
       <thead>
         <tr>
           <th>Customer Name</th>
@@ -50,8 +54,8 @@ function ConfirmedOrders() {
       </thead>
       <tbody>{ordersList}</tbody>
     </table>
-    </div>
-    : "There is no confirmed Pending"
+          </div>
+    : <div className="text-center w-75 mx-auto" style={{height:"30vh"}}><h3 className='text-primary'>There is no Orders Confirmed</h3></div>
     }
     </div>
 
